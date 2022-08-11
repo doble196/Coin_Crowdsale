@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([[33],{2923:(function(module,__webpack_exports__,__webpack_require__){"use strict";__webpack_require__.r(__webpack_exports__);__webpack_exports__["default"]=("export declare const version = \"ethers/5.5.1\";\n//# sourceMappingURL=_version.d.ts.map");})}]);
