@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.5;
 
 //  Import the following contracts from the OpenZeppelin library:
 //    * `ERC20`
@@ -13,9 +13,8 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5
 contract KaseiCoin is ERC20, ERC20Detailed, ERC20Mintable {
 	using SafeMath for uint;
 	
-	constructor (
-    	string memory name , KaseiCoin,
-		string memory symbol
-	)
-	ERC20Detailed(name, symbol, 18) public {}
+	constructor (string memory name, string memory symbol, uint8 decimals)
+	ERC20Detailed(name, symbol, decimals)
+	public {
+	}
 }
