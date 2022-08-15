@@ -3,35 +3,17 @@ pragma solidity ^0.5.0;
 import "./KaseiCoin.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/Crowdsale.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/emission/MintedCrowdsale.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/validation/CappedCrowdsale.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/validation/TimedCrowdsale.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/distribution/RefundablePostDeliveryCrowdsale.sol";
-
 // Have the KaseiCoinCrowdsale contract inherit the following OpenZeppelin:
 // * Crowdsale
 // * MintedCrowdsale
-contract KaseiCoinCrowdsale is Crowdsale, MintedCrowdsale, TimedCrowdsale, CappedCrowdsale, RefundablePostDeliveryCrowdsale, TokenTimelock { // UPDATE THE CONTRACT SIGNATURE TO ADD INHERITANCE
+contract KaseiCoinCrowdsale is Crowdsale, MintedCrowdsale { // UPDATE THE CONTRACT SIGNATURE TO ADD INHERITANCE
     
     // Provide parameters for all of the features of your crowdsale, such as the `rate`, `wallet` for fundraising, and `token`.
     constructor (
         uint rate,
         address payable wallet_for_funding,
         KasseiCoin kaseiCoin_contract_wallet,
-        uint goal,
-        uint open,
-        uint close,
-        uint releaseTime
-    ) 
-
-    public Crowdsale (
-        rate = 1, 
-        wallet_for_funding, 
-        kaseiCoin_contract_wallet)
-        CappedCrowdsale (goal)
-        TimedCrowdsale (open, close)
-        RefundablePostDeliveryCrowdsale (goal){
-        // constructor can stay empty
-    }
+    )
 }
 
 
