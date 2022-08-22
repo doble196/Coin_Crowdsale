@@ -230,10 +230,6 @@ To enhance your KaseiCoin crowdsale with this added functionality, complete the 
 ![Compilation](ImagesPNG/deployerCompilation.png)  
 
 
-### *This is the `Ganashe Interface ` block transactions:* 
-
-![BlocksGanashe](ImagesPNG/blocks.png)  
-
 
 * `Remix -> metamask -> ganashe` to complete crowdsale in testing environment.  
 
