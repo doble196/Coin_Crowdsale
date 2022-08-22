@@ -1,56 +1,85 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.5;
 
 import "./KaseiCoin.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/Crowdsale.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/emission/MintedCrowdsale.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/validation/CappedCrowdsale.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/validation/TimedCrowdsale.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/distribution/RefundablePostDeliveryCrowdsale.sol";
+
+
+
 // Have the KaseiCoinCrowdsale contract inherit the following OpenZeppelin:
 // * Crowdsale
 // * MintedCrowdsale
-contract KaseiCoinCrowdsale is Crowdsale, MintedCrowdsale { // UPDATE THE CONTRACT SIGNATURE TO ADD INHERITANCE
-    
-    // Provide parameters for all of the features of your crowdsale, such as the `rate`, `wallet` for fundraising, and `token`.
-    constructor (
-        uint rate,
-        address payable wallet_for_funding,
-        KasseiCoin kaseiCoin_contract_wallet,
-    )
+// * CappedCrowdSale
+// * TimedCrowdSale
+// * RefundablePostDeliveryCrowdsale
+
+
+
+contract KaseiCoinCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, TimedCrowdsale, RefundablePostDeliveryCrowdsale { // UPDATE THE CONTRACT SIGNATURE TO ADD INHERITANCE
+
+    // Provide parameters for all of the features of your crowdsale, such as the `rate`, `beneficiaryWallet` for fundraising, and `token`.
+    constructor(
+        // We are going to get rate, wallet, & KaseiCoin contract adddresses from the user, i.e. Remix interface
+        // that will be used in the constructor        
+        uint256 exchangeRate, // rate in TKNbits
+        address payable beneficiaryFundraisingWallet, // sale beneficiary for fundraising
+        KaseiCoin kaseiCoinContractAddress, // the KaseiCoin itself that the KaseiCoinCrowdsale will work with
+        uint256 goal, // the crowdsale goal
+        uint256 open, // the crowdsale opening time
+        uint256 close // the crowdsale closing time
+
+    )   public 
+
+        Crowdsale (exchangeRate, beneficiaryFundraisingWallet, kaseiCoinContractAddress) 
+        CappedCrowdsale (goal)
+        TimedCrowdsale (open, close)
+        RefundableCrowdsale (goal) 
+    {
+            // constructor can stay empty
+    }
 }
 
 
+
 contract KaseiCoinCrowdsaleDeployer {
+
     // Create an `address public` variable called `kasei_token_address`.
-    address public kasei_token_address;
+    address public kaseiTokenAddress;
+    
     // Create an `address public` variable called `kasei_crowdsale_address`.
-    address payable kasei_crowdsale_address;
+    address public kaseiCrowdsaleAddress;
 
     // Add the constructor.
-    constructor (
+    constructor(  
+        // We are going to get name, symbol, rate, wallet address from the user, i.e. Remix interface
+        // that will be used in the constructor
         string memory name,
         string memory symbol,
-        uint exchange_rate,
+        uint256 exchangeRate,
         address payable wallet,
-        uint goal,
-        uint open,
-        uint close
-    )
-
-    public {
-        // Create a new instance of the KaseiCoin contract.
-        KaseiCoin token_contract = new KaseiCoin (name, symbol, 0);
+        uint goal
         
-        // Assign the token contract’s address to the `kasei_token_address` variable.
-        kasei_token_address = address(token_contract);
+    )   public {
 
+        // Create a new instance of the KaseiCoin contract.
+        KaseiCoin tokenContract = new KaseiCoin (name, symbol, 0);
+
+        // Assign the token contract’s address to the `kasei_token_address` variable.
+        kaseiTokenAddress = address(tokenContract);
+    
         // Create a new instance of the `KaseiCoinCrowdsale` contract
-        KaseiCoinCrowdsale crowdsale_contract = new KaseiCoinCrowdsale (exchange_rate, wallet, token_contract,goal,now,now + 5 minutes);            
-            
-        // Assign the `KaseiCoinCrowdsale` contract’s address to the `kasei_crowdsale_address` variable.
-        kasei_crowdsale_address = address (crowdsale_contract);
+        KaseiCoinCrowdsale crowdsaleContract = new KaseiCoinCrowdsale (exchangeRate, wallet, tokenContract, goal, now, now + 5 minutes);          
+
+        // Aassign the `KaseiCoinCrowdsale` contract’s address to the `kasei_crowdsale_address` variable.
+        kaseiCrowdsaleAddress = address (crowdsaleContract);
 
         // Set the `KaseiCoinCrowdsale` contract as a minter
-        token_contract.addMinter(kasei_crowdsale_address);
-        
+        tokenContract.addMinter(kaseiCrowdsaleAddress);
+
         // Have the `KaseiCoinCrowdsaleDeployer` renounce its minter role.
-        token_contract.renounceMinter();
+        tokenContract.renounceMinter();
     }
 }
