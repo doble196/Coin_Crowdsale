@@ -1,6 +1,8 @@
-# Application
+# Martian Token Crowdsale
 
-## Challenge: Martian Token Crowdsale
+### *This is the `KaseiCoinCrowdsaleDapp` block transactions:* 
+
+![BlocksGanashe](ImagesPNG/background.png)  
 
 You will create a fungible token that is ERC-20 compliant and that will be minted by using a `Crowdsale` contract from the OpenZeppelin Solidity library.
 
@@ -200,3 +202,50 @@ To enhance your KaseiCoin crowdsale with this added functionality, complete the 
     * When sending ether to the contract, make sure that you meet the contract’s `goal`. Then, finalize the sale using the `Crowdsale` contract's `finalize` function. To finalize the sale, `isOpen` must return false (`isOpen` comes from `TimedCrowdsale` and checks to see whether the `close` time has passed yet). If you set the `goal` to 300 ether, for example, you may need to purchase tokens from multiple accounts in order to meet the goal. If you run out of pre-funded accounts in Ganache, you can create a new workspace.
 
     * View your tokens in MetaMask. In MetaMask, click Add Token, then click Custom Token,  and enter the token contract’s address. Make sure to purchase higher amounts of tokens in order to see the denomination appear in your wallet as more than a few wei worth.
+
+
+
+### *First transaction running shows `Crowd Deployer`:* 
+
+![Ganashe](ImagesPNG/crowdDeployerCreation.png)  
+ 
+
+### *Transaction hash mined creating `Coin Deployment`:* 
+
+![Ganashe](ImagesPNG/kaseicoinDepolyment.png) 
+
+
+### *Third deployment hash `Coin Crowdsale`:* 
+
+![Ganashe](ImagesPNG/kaseiCoinCrowdsale.png)  
+
+
+### *Customer sending payment `Kaseicoin Compilation` from Ganashe:* 
+
+![Compilation](ImagesPNG/kaseiCompilation.png)  
+
+
+### *Successful transactions for `Deployer Compilation` from `Ganashe`:* 
+
+![Compilation](ImagesPNG/deployerCompilation.png)  
+
+
+### *This is the `Ganashe Interface ` block transactions:* 
+
+![BlocksGanashe](ImagesPNG/blocks.png)  
+
+
+* `Added 9 employees accounts` to the application.  
+
+* `Added` the `extra slots` for `images`.  
+
+* `Ganashe` was `optimized` with a `512bit mnemonic`.  
+
+* `Ganashe test accounts` started with `1000 eth in wallet each`.  
+
+* `Application` is `optimized` to `serve more employees`.  
+
+
+## Contributor
+
+`Rensley Ramos` - ranly196@gmail.com, https://www.linkedin.com/in/rensley-2-nfty/  
