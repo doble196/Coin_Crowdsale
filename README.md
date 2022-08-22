@@ -235,15 +235,8 @@ To enhance your KaseiCoin crowdsale with this added functionality, complete the 
 ![BlocksGanashe](ImagesPNG/blocks.png)  
 
 
-* `Added 9 employees accounts` to the application.  
+* `Remix -> metamask -> ganashe` to complete crowdsale in testing environment.  
 
-* `Added` the `extra slots` for `images`.  
-
-* `Ganashe` was `optimized` with a `512bit mnemonic`.  
-
-* `Ganashe test accounts` started with `1000 eth in wallet each`.  
-
-* `Application` is `optimized` to `serve more employees`.  
 
 
 ## Contributor
