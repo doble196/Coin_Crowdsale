@@ -13,8 +13,16 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5
 contract KaseiCoin is ERC20, ERC20Detailed, ERC20Mintable {
 	using SafeMath for uint;
 	
-	constructor (string memory name, string memory symbol, uint8 decimals)
-	ERC20Detailed(name, symbol, decimals)
-	public {
+	constructor 
+	(
+    	string memory name,
+		string memory symbol,
+		uint initialSupply
+	)
+		ERC20Detailed(name, symbol, 18
+	) 	
+		public 
+	{
+		// ...
 	}
 }
